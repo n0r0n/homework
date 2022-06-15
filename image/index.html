@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>123</title>
+		<style type="text/css">
+			body {
+				margin: 0;
+				font-family: monospace;
+			}
+			a{
+				color: white;
+			} 
+			a:visited {
+				color: white;
+			}
+			a:active {
+				color: white;
+			}
+			html{
+
+			}
+			.master {
+			  background-image: radial-gradient(farthest-corner at 40px 40px, #f35 0%, #43e 100%);
+			  
+			  
+			}
+			.info{
+				text-align: center;
+				vertical-align: center;
+				display: table-cell;
+				font-size: 9pt;
+				margin-left:15%;
+				margin-top:20px;
+			}
+			.header {
+				
+				display: flex;
+				justify-content: center;
+				width: 100%;
+				height: 90px;
+			}
+			.header-top{
+				background-color: black;
+				height: 50px;
+				color: white;
+				display: flex;
+				justify-content: space-between;
+			}
+			.logo h1{
+				font-size:40;
+			}
+			.logo{
+				margin-right:15%;
+			}
+			.header-gradient{
+				background-image: linear-gradient(rgb(0,0,0), rgba(255,255,255,0));
+				height: 50px;
+			}
+			.header-content{
+				margin-bottom: 5px;
+				display: flex;
+				justify-content: left;
+				background-color: white;
+				border-radius: 7px;
+				width: 70%;
+				height: 60px;
+			}
+			.button-nav {
+				width: 20%;
+				text-align: center;
+				vertical-align: center;
+				display: table-cell;
+				font-size: 15pt;
+				height: 100%;
+				border-radius: 7px 0 0 7px;
+				background-color: rgb(205,205,205);
+			}
+			.button-nav-slave:hover{
+				background-color: rgb(235,235,235);
+			}
+			.button-nav-slave{
+				display: none;
+				z-index: 100;
+				position: relative;
+				
+				text-align: center;
+				font-size: 15pt;
+				height: 60px;
+				
+				box-shadow: 2px 2px 2px black;
+				margin-left: 10px;
+				background-color: rgb(205,205,205);
+			}
+			.button-nav:hover>.button-nav-slave{
+				display: flex;
+				justify-content: center; 
+			}
+			.button-nav:hover{
+				background-color: rgb(235,235,235);
+			}
+
+			.search{
+				width: 80%;
+				color:white;
+				margin: 10px;
+				border-radius: 3px;
+				background-color: rgb(235,235,235);
+			}
+			.search textarea {
+				resize: none;
+				border: none;
+				outline: none;
+				background-color: rgba(235,235,235,0);
+				width: 100%;
+				margin-top: 10px;
+				margin-left: 5px;
+				height: 100%;
+			}
+			.content{
+				display: flex;
+			  	justify-content: center;
+			  	height: 1000px;
+			}
+			.main{
+				border-radius: 7px;
+				margin: 15px;
+				background-color: white;
+				width: 70%	
+			}
+			.yopta-master{
+				display: flex;
+				justify-content: center;
+			}
+			.yopta{
+				width: 90%;
+				color: black;
+				text-align: center;
+				font-size:30pt;
+				font-family: sans-serif;
+				text-shadow: 1px 1px 2px black;
+
+			}
+			.content-text {
+				display: flex;
+				width: 100%;
+				justify-content: center;
+			}
+			.content-text div {
+				width: 80%;
+				font-size:15pt;
+			}
+			.gallery-box{
+				display: flex;
+				justify-content: space-around;
+			}
+			.gallery {
+				margin:10px;
+				
+				width: 70%;
+				height: 200px;
+			}
+			.item{
+				display: block;
+			}
+			.next{
+				
+			}
+			.arrows{
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				position: relative;
+				top:-50%;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+			.prev, .next{
+				cursor: pointer;
+				position: relative;
+				
+				width: auto;
+				margin-top: -22px;
+				padding: 16px;
+				color: white;
+				font-weight: bold;
+				font-size: 18px;
+				transition: 0.6s ease;
+				border-radius: 0 3px 3px 0;
+			}
+			.gallery img {
+				object-fit: cover;
+				width: 100%;
+				height: 200px;
+				border-radius: 5px;
+			}
+		</style>
+		<script>
+			let galleryIndex;
+			function galleryAction(action){
+				switch(action){
+					case '+':
+						gallery(galleryIndex += 1);
+						break;
+					case '-':
+						gallery(galleryIndex -= 1);
+						break;
+				}
+			}
+			window.onload = function()
+			{
+				galleryIndex = 0;
+				console.log("LOAD!")
+				gallery(galleryIndex);
+			}			 
+			function gallery(n){
+				let items = document.getElementsByClassName('item');
+				let length = items.length-1;
+				console.log('n='+n+' itemslenght='+length);
+				console.log(n>length)
+
+				if(n>length) {
+					galleryIndex = length
+				}
+				if(n<0) {
+					galleryIndex = 0
+				}
+				console.log('index='+galleryIndex)
+
+				Array.from(items).forEach((item,i,arr) => {
+					item.style.display="none";
+					
+					console.log(item);
+				});
+				console.log(galleryIndex);
+				console.log('---------')
+				console.log(items[galleryIndex]);
+				
+				items[galleryIndex].style.display="block";
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div class="master">
+			<div class="header-top">
+				<div class="info">
+					<a href="tel:+79176364587">Позвонить нам</a>
+					<a href="mailto:yoptascript.dev@gmail.com">Написать нам</a>
+				</div>
+				<div class="logo"><h1>LOGO</h1></div>
+				
+			</div>
+			<div class="header-gradient"></div>
+			<div class="header">
+				
+				<div class="header-content">
+					<div class="button-nav">
+						<p>Навигация</p>
+						<div class="button-nav-slave"><p>Контакты</p></div>
+						<div class="button-nav-slave"><p>Работы</p></div>
+						<div class="button-nav-slave"><p>Ценники</p></div>
+					</div>
+					<div class="search"><textarea wrap="off" placeholder="Поиск..."></textarea></div>
+
+				</div>
+			</div>
+			<div class="content">
+				<div class="main">
+					<div class="yopta-master">
+						<div class="yopta"><p style="">YOPTASCRIPT</p></div>
+					</div>
+					<div class="content-text">
+							<div>
+							YoptaScript это первый в мире скриптовый язык программирования для гопников и реальных пацанов, транслируемый в чистый JavaScript. YoptaScript позволит "чётким пацанам" быстро влиться в ряды программистов и процесс разработки.
+
+							Язык находится в процессе глубокой разработки. Рады любой помощи в поиске багов и всем, кто готов помочь нам продолжить начатое!
+							</div>
+					</div>
+					<div class="gallery-box">
+						<div class="gallery">
+							<div class="item">
+								<img src="https://avatars.mds.yandex.net/i?id=4bf7177e1d1ace54f33ebdc558edfb91-4103294-images-thumbs&n=13&exp=1">
+							</div>
+							<div class="item">
+								<img src="https://funik.ru/wp-content/uploads/2018/10/17478da42271207e1d86.jpg">
+							</div>
+							<div class="item">
+								<img src="https://bugaga.ru/uploads/posts/2017-03/1489052030_kotik-hosiko-12.jpg">
+							</div>
+							<div class="item">
+								<img src="https://pic.rutubelist.ru/video/17/b1/17b100a0bcbc6e5e8d11101cde21aca7.jpg">
+							</div>
+							<div class="item">
+								<img src="https://ne-kurim.ru/forum/attachments/image-2020-04-05t100255-596-jpg.1162836/">
+							</div>
+							<div class="item">
+								<img src="https://proprikol.ru/wp-content/uploads/2020/08/krasivye-kartinki-kotikov-17.jpg">
+							</div>
+							<div class="item">
+								<img src="https://storyfox.ru/wp-content/uploads/2019/11/wsi-imageoptim-6-31-samie-krasivie-koshki-mira-3.jpg">
+							</div>
+							<div class="arrows">
+								<a class="prev" onclick="galleryAction('-')">←</a>
+								<a class="next" onclick="galleryAction('+')">→</a>
+							</div>
+						</div>
+					</div>
+					<div class="content-text">
+							<div>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,609 @@
+body {
+	margin: 0;
+    font: 20pt monospace;
+	background-color:rgb(65, 65, 65);
+	box-shadow: inset 0 0 100px #000;
+}
+.long_line {
+	border-bottom: 100% solid #c2c2c2;
+}
+h1 {
+	display: inline;
+	color:azure;
+  	border-bottom: 2px solid #c2c2c2;
+}
+h2 {
+	display: inline;
+	color:azure;
+  	border-bottom: 2px solid #c2c2c2;
+}
+h3 {
+	display: inline;
+	color:azure;
+  	border-bottom: 2px solid #c2c2c2;
+}
+h4 {
+	display: inline;
+	color:azure;
+  	border-bottom: 2px solid #c2c2c2;
+}
+::-webkit-input-placeholder {color:#ffffff;}
+::-moz-placeholder          {color:#ffffff;}/* Firefox 19+ */
+:-moz-placeholder           {color:#ffffff;}/* Firefox 18- */
+:-ms-input-placeholder      {color:#ffffff;}
+
+
+@media screen and (min-width: 800px) {
+	.title{
+		padding: 10px;
+		padding-left: 3%;
+	}
+	a.button {
+		padding: 5px;
+		color: rgb(133, 133, 133);
+		box-shadow: rgb(133, 133, 133) 0 0px 0px 2px inset;
+	}
+	.search_box input{
+		border: none;
+		height:70%;
+		width: 100%;
+		padding:10px;
+  		outline: none;
+		color: #ffffff;
+		font-size: 15px;
+		background: rgb(95, 95, 95);
+	}
+	.search_box{
+		padding-top: 10px;
+		margin:0 auto;
+		color: #ffffff;
+		width: 100%;
+		height: 50%;
+		border-radius: 10px;
+		background-color: rgb(95, 95, 95);
+	}
+	.search{
+		padding:30px;
+		
+		width: 70%;
+	}
+	.cart a {
+		margin:0 auto;
+		font-size: 20px;
+	}
+
+	.cart{
+		padding:40px;
+		width: 10%;
+	}
+	.logo{
+		width: 20%;
+	}
+	.logo img{
+		width: 100%;
+		height: 100%;
+	}
+	
+	a.button:hover {
+		color: rgba(255, 255, 255, 0.85);
+		box-shadow: rgb(116, 116, 116) 0 80px 0px 2px inset;
+	}
+	.imgbox{
+		width: 100%;
+		height: 70%;
+	}
+	.item img {
+		border-radius: 10px 10px 0 0;
+		width: 100%;
+		height: auto;
+	}
+	.item_bottom{
+		display: flex;
+		justify-content: right;
+	}
+	.item_button{
+		border-radius: 20px;
+		background-color:rgb(65, 65, 65);
+		color: white;
+		padding: 5px;
+		text-align: center;
+	}
+	.item{
+		font-size: 20px;
+		text-align: left;
+		padding: 5px;
+		
+		image-resolution: 100%;
+		height: 400px;
+		width: 20%;
+		border-radius: 10px;
+		background: #ffffff;
+	}
+	.new-items{
+		margin: 10px;
+		height: 400px;
+		display: flex;
+		justify-content: space-around;
+	}
+	.super{
+		padding: 0px;
+		margin: 0px;
+	}
+	header {
+		width: 100%;
+		height: 250px;
+		margin-bottom: 30px;
+	}
+	header ul {
+		display: flex;
+		justify-content:left;
+		margin: 0;
+		margin-right: 20px;
+	}
+	header li {
+		list-style-type: none;
+		display: inline;
+		margin-left: 10px;
+	}
+	header a {
+		color:#ffffff;
+	}
+	.header_info_number{
+		width: 30%;
+	}
+	.header_center{
+		padding: 5px;
+		height: 62%;
+		display: flex;
+		justify-content:left;
+		color: white;
+		font-size: 15px;
+	}
+	.catalogue_element{
+		margin: auto 10px;
+	}
+	.catalogue ul {
+		/* Убираю маркеры у списка*/
+		list-style: none;
+		/* Делаю элементы блочными. */
+		display: block;
+		/* Убираю отступы. */
+		margin:0px;
+		/* Убираю еще отступы! */
+		padding:0px;
+	}
+	.catalogue ul:after {
+		/* Делаю элементы блочными. */
+		display: block;
+		/* Убираю выравнивание. */
+		float: none;
+		content: ' ';
+		clear: both;
+	}
+	.catalogue ul.menu > li {
+		/* Задаю выравнивание и позиционирование. */
+		float: left;
+		/* Считаем координаты относительно исходного места*/
+		position: relative;
+	}
+	.catalogue ul.menu > li > a {
+		/* Делаю элементы блочными: */
+		display: block;
+		/* Задаю белый цвет. */
+		color: #fff;
+		/* Задаю отступ 10px. */
+		padding: 10px;
+		/* Убираю форматирование*/
+		text-decoration: none;
+		/* Задаю цвет. */
+	}
+	ul.menu > li > a:hover {
+		/* Задаю цвет при наведении. */
+	}
+	ul.submenu {
+		position: absolute;
+		width: 240px;
+		top: 37px;
+		left:0px;
+		/* Делаю субменю скрытыми. */
+		display: none;
+		/* Цвет — белый. */
+		background-color: white;
+	}
+	ul.submenu > li {
+		/* Блочное расположение элементов*/
+		display: block;
+	}
+	ul.submenu > li > a {
+		/* Делаю элементы блочными. */
+		display: block;
+		/* Убираю форматирование*/
+		text-decoration: none;
+		/* Задаю отступ. */
+		padding: 10px;
+		/* Задаю цвет. */
+		color: #ffffff;
+		/* Еще цвет. */
+		background-color: #000000;
+	}
+	ul.submenu > li > a:hover {
+		/* Цвет бэкграунда при наведении. */
+		background-color: #575757;
+		/* Задаю подчеркивание*/
+		text-decoration: underline;
+	}
+	ul.menu > li:hover > ul.submenu {
+		/* Делаю элементы блочными. */
+		display: block;
+	}
+	
+	.catalogue{
+		width: 100%;
+		height: 100%;
+		background-color: rgb(95, 95, 95);
+		border-radius: 10px;
+		display: flex;
+		justify-content: left;
+	}
+	.header_catalogue{
+		margin: auto 3%;
+		height: 20%;
+		display: flex;
+		justify-content:left;
+		color: white;
+		font-size: 15px;
+	}
+	.header_info {
+		background-color: black;
+		height: 8%;
+		display: flex;
+		justify-content: space-around;
+		color: white;
+		font-size: 15px;
+	}
+	.header_info li {
+	}
+	.header_info ul {
+		width: 100%;
+	}
+
+	.header_info_time {
+		margin-left:50px;
+	}
+	.header_info_buttons{
+		width: 40%;
+	}
+	 
+	.main {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.content{
+		width: 95%;
+		height: auto;
+		border-radius: 10px;
+		background: #8c8c8c;
+	}
+	.footer {
+		width: 100%;
+		border-radius: 10px;
+		padding: 30px 0;
+		background: #8c8c8c;
+		color: white;
+	}
+	.mobile-topbar {
+		display: none;
+	}
+}
+
+@media screen and (orientation: portrait) {
+
+	.title{
+		font-size: 60px;
+		padding: 10px;
+		padding-left: 3%;
+	}
+	.mobile-topbar_content {
+		color:#ffffff;
+		font-size: 30px;
+		width: 95%;
+		height: 100%;
+		display: flex;
+		justify-content: space-around;
+		background-color: rgb(95, 95, 95);
+		border-radius: 10px;
+	}
+	.mobile-topbar_button{
+		
+		margin: auto auto;
+	}
+	a {
+		color:#ffffff;
+	}
+	.mobile-topbar {
+		height: 150px;
+		padding-bottom: 10px;
+		margin: 0px;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+	a.button {
+		padding: 5px;
+		color: rgb(82, 82, 82);
+		box-shadow: rgb(82, 82, 82) 0 0px 0px 2px inset;
+	}
+	.search_box input{
+		border: none;
+		height:70%;
+		width: 100%;
+		padding:10px;
+  		outline: none;
+		color: #ffffff;
+		font-size: 15px;
+		background: rgb(95, 95, 95);
+	}
+	.search_box{
+		padding-top: 10px;
+		margin:0 auto;
+		color: #ffffff;
+		width: 100%;
+		height: 50%;
+		border-radius: 10px;
+		background-color: rgb(95, 95, 95);
+	}
+	.search{
+		padding:30px;
+		width: 70%;
+		height: 0px;
+		display: none;
+	}
+	.cart a {
+		margin:0 auto;
+		font-size: 20px;
+	}
+
+	.cart{
+		padding:40px;
+		width: 10%;
+		display: none;
+	}
+	.logo{
+		opacity: 0;
+		visibility: hidden;
+		display: none;
+		width: 20%;
+	}
+	.logo img{
+		width: 100%;
+		height: 100%;
+	}
+	
+	a.button:hover {
+		color: rgba(255, 255, 255, 0.85);
+		box-shadow: rgb(82, 82, 82) 0 80px 0px 2px inset;
+	}
+	.imgbox{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.item img {
+		border-radius: 10px 10px 0 0;
+		width: 100%;
+		height: auto;
+	}
+	.item_bottom{
+		display: flex;
+		justify-content: right;
+	}
+	.item_button{
+		font-size: 5px;
+		border-radius: 20px;
+		background-color:rgb(65, 65, 65);
+		color: white;
+		padding: 5px;
+		text-align: center;
+	}
+	.item{
+		margin-left: auto;
+    	margin-right: auto;
+		font-size: 45px;
+		text-align: left;
+		padding: 5px;
+		
+		margin-bottom: 20px;
+
+		image-resolution: 100%;
+		height: 930px;
+		width: 70%;
+		border-radius: 20px;
+		background: #ffffff;
+	}
+	.new-items{
+		margin: 10px;
+		height: auto;
+		display: block;
+		justify-content: center;
+	}
+	.super{
+		padding: 0px;
+		margin: 0px;
+	}
+	header {
+		width: 100%;
+		height: 250px;
+		margin-bottom: 30px;
+	}
+	header ul {
+		display: flex;
+		justify-content:left;
+		margin: 0;
+		margin-right: 20px;
+	}
+	header li {
+		list-style-type: none;
+		display: inline;
+		margin-left: 10px;
+	}
+	header a {
+		color:#ffffff;
+	}
+	.header_info_number{
+		width: 30%;
+	}
+	.header_center{
+		padding: 5px;
+		height: 0px;
+		display: none;
+		display: flex;
+		justify-content:left;
+		color: white;
+		font-size: 15px;
+	}
+	.catalogue_element{
+		font-size: 55px;
+		margin: auto 10px;
+		margin-top: 40px;
+	}
+	.catalogue ul {
+		
+		/* Убираю маркеры у списка*/
+		list-style: none;
+		/* Делаю элементы блочными. */
+		display: block;
+		/* Убираю отступы. */
+		margin:0px;
+		/* Убираю еще отступы! */
+		padding:0px;
+	}
+	.catalogue ul:after {
+		/* Делаю элементы блочными. */
+		display: block;
+		/* Убираю выравнивание. */
+		float: none;
+		content: ' ';
+		clear: both;
+	}
+	.catalogue ul.menu > li {
+		font-size: 33px;
+		/* Задаю выравнивание и позиционирование. */
+		float: left;
+		/* Считаем координаты относительно исходного места*/
+		position: relative;
+	}
+	.catalogue ul.menu > li > a {
+		/* Делаю элементы блочными: */
+		display: block;
+		font-size: 30px;
+		/* Задаю белый цвет. */
+		color: #fff;
+		/* Задаю отступ 10px. */
+		padding: 10px;
+		/* Убираю форматирование*/
+		text-decoration: none;
+		/* Задаю цвет. */
+	}
+	ul.menu > li > a:hover {
+		/* Задаю цвет при наведении. */
+	}
+	ul.submenu {
+		position: absolute;
+		width: 240px;
+		top: 37px;
+		left:0px;
+		/* Делаю субменю скрытыми. */
+		display: none;
+		/* Цвет — белый. */
+		background-color: white;
+	}
+	ul.submenu > li {
+		/* Блочное расположение элементов*/
+		display: block;
+	}
+	ul.submenu > li > a {
+		/* Делаю элементы блочными. */
+		display: block;
+		/* Убираю форматирование*/
+		text-decoration: none;
+		/* Задаю отступ. */
+		padding: 10px;
+		/* Задаю цвет. */
+		color: #ffffff;
+		/* Еще цвет. */
+		background-color: #000000;
+	}
+	ul.submenu > li > a:hover {
+		/* Цвет бэкграунда при наведении. */
+		background-color: #575757;
+		/* Задаю подчеркивание*/
+		text-decoration: underline;
+	}
+	ul.menu > li:hover > ul.submenu {
+		/* Делаю элементы блочными. */
+		display: block;
+	}
+	
+	.catalogue{
+		width: 100%;
+		height: 100%;
+		background-color: rgb(95, 95, 95);
+		border-radius: 10px;
+		display: flex;
+		justify-content: center;
+	}
+	.header_catalogue{
+		margin: auto 3%;
+		height: 50%;
+		display: flex;
+		justify-content:left;
+		color: white;
+		font-size: 15px;
+	}
+	.header_info {
+		opacity: 0;
+		visibility: hidden;
+		display: none;
+		background-color: black;
+		height: 8%;
+		
+		justify-content: space-around;
+		color: white;
+		font-size: 15px;
+	}
+	.header_info li {
+	}
+	.header_info ul {
+		width: 100%;
+	}
+
+	.header_info_time {
+		margin-left:50px;
+	}
+	.header_info_buttons{
+		width: 40%;
+	}
+	 
+	.main {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.content{
+		width: 95%;
+		border-radius: 10px;
+		background: #8c8c8c;
+	}
+	.footer {
+		width: 100%;
+		border-radius: 10px;
+		padding: 30px 0;
+		background: #8c8c8c;
+		color: white;
+	}
+}
+
+a {
+	text-decoration: none;
+}

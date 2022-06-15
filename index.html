@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/mobile.css" rel="stylesheet">
+		<link href="css/tablet.css" rel="stylesheet" type="text/css">
+		<link href="css/desktop.css" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+        <script>
+            let filterValue
+            let activePopupId
+            let popupCloseTempBool = true
+            window.onload = function()
+			{
+                filter(document.querySelector('[filter="all"]'))
+				
+			}
+            let popupTempChange = () => {
+                popupCloseTempBool = false
+                console.log(popupCloseTempBool)
+            }
+            let preOpenPopup = () => {
+                let start = Date.now();
+                let timer = setInterval(()=>{
+                    let timePassed = Date.now() - start;
+                    if(timePassed >= 2) {
+                        if(popupCloseTempBool) {
+                            popupCloseTempBool = false
+                            closePopup()
+                        }
+                        popupCloseTempBool = true
+                        clearInterval(timer);
+                        return;
+                    }
+                    draw(timePassed);
+                }, 20);
+            }
+            let openPopup = (id) => {
+                document.querySelector('[class="popup-wrapper"]').style.display = "flex"
+				document.getElementById(id).style.display = "flex"
+				
+				
+                let popup = document.getElementById(id)
+
+                console.log(popup)
+
+                let start = Date.now();
+
+                let draw = (timePassed) => {
+                    popup.style.top = 500-timePassed + 'px';
+                }
+
+                let timer = setInterval(()=>{
+                    let timePassed = Date.now() - start;
+                    if(timePassed >= 330) {
+                        clearInterval(timer);
+                        return;
+                    }
+                    draw(timePassed);
+                }, 20);
+                activePopupId = id
+
+            }
+            let closePopup = () => {
+				
+				document.querySelector('[class="popup-wrapper"]').style.background = "none"
+                let id = activePopupId
+                
+                let popup = document.getElementById(id)
+
+                let start = Date.now();
+
+                let draw = (timePassed) => {
+                    popup.style.top = 500+timePassed + 'px';
+                }
+
+                let timer = setInterval(()=>{
+                    let timePassed = Date.now() - start;
+                    if(timePassed >= 330) {
+                        document.querySelector('[class="popup-wrapper"]').style.background = "initial";
+						document.querySelector('[class="popup-wrapper"]').style.backgroundColor  = "rgba(0,0,0,0.5)";
+						
+						document.querySelector('[class="popup-wrapper"]').style.display = "none";
+						
+						Array.from(document.getElementsByClassName("popup-content")).forEach((item,i,arr)=>{
+							item.style.display = "none"
+						})
+						
+                        clearInterval(timer);
+                        return;
+                    }
+                    draw(timePassed);
+                }, 20);
+
+                
+
+            }
+			let openSearchBar = () => {
+				document.querySelector('[class="favorite-wrapper"]').style.display = 'none'
+				document.querySelector('[class="search-button-wrapper"').style.display = 'none'
+				
+				document.querySelector('[class="search-textinput-wrapper"').style.display = 'flex'
+			}
+            let closeSearchBar = () => {
+				document.querySelector('[class="favorite-wrapper"]').style.display = 'flex'
+				document.querySelector('[class="search-button-wrapper"').style.display = 'flex'
+				
+				document.querySelector('[class="search-textinput-wrapper"').style.display = 'none'
+			}
+			let addToFavorite = (elem) => {
+				let isActive = elem.getAttribute('active');
+				
+                if(isActive === 'false'){
+                    elem.className += ' content-favorite-active'
+                    elem.setAttribute('active','true')
+                } else{
+                    elem.className = elem.className.replace('content-favorite-active','')
+                    elem.setAttribute('active','false')
+                }
+			}
+
+            let favoriteClick = (elem) => {
+                let isActive = elem.getAttribute('active');
+                if(isActive === 'false'){
+                    elem.className = 'favorite-button-active'
+                    elem.setAttribute('active','true')
+                } else{
+                    elem.className = 'favorite-button'
+                    elem.setAttribute('active','false')
+                }
+            }
+            let filter = (elem) => {
+                let elems = document.querySelectorAll('[type="button"]')
+
+                Array.from(elems).forEach((item,i,arr) => {
+                    item.className = "slide-item-button"
+                    item.setAttribute('active','false')
+                    //console.log(i)
+                })
+                //console.log(elems)
+
+                let isActive = elem.getAttribute('active');
+                if(isActive === 'false'){
+                    elem.className = 'slide-item-button-active'
+                    elem.setAttribute('active','true')
+                } else{
+                    elem.className = 'slide-item-button'
+                    elem.setAttribute('active','false')
+                }
+                filterValue = elem.getAttribute('filter');
+                renderItems()
+            }
+            let renderItems = () => {
+                let elems = document.getElementsByClassName('content-item')
+                let filters
+                Array.from(elems).forEach((item,i,arr)=>{
+                    let temp = item.className.replace('content-item ','');
+                    filters = temp.substr(temp.indexOf(" ") + 1)
+                    
+                    //console.log('ELEM FILTERS - ' + filters + ' COMPARE WITH' + filterValue)
+
+                    if(!(filters.indexOf(filterValue) !== -1 || filterValue=='all')){
+                        //console.log('NOT PASSED! SET DISPLAY NONE!')
+
+                        item.style.display = "none"
+                    }
+                    else
+                        item.style.display="flex"
+                })
+
+
+            }
+        </script>
+    </head>
+    <body>
+        <div class="master">
+            <div class="header">
+                <div class="header-top">
+                    <div class="header-date-container">
+                        <div class="header-date">
+                            <p class="date-title"><b>Главная</b></p>
+                            <p class="date-subtitle">17 июля 2021</p>
+                        </div>
+                    </div>
+                    <div class="header-logo">
+                        <img src="image/logo.svg">
+                    </div>
+                </div>
+                <div class="header-bottom">
+                    <div class="slide-menu">
+                        <div class="slide-item first-slide"><div class="slide-item-button-container first"><div type="button" filter="all" active="true" onclick="filter(this)" class="slide-item-button">Все</div></div></div>
+                        <div class="slide-item"><div class="slide-item-button-container"><div type="button" filter="new" active="false" onclick="filter(this)" class="slide-item-button">Новинки</div></div></div>
+                        <div class="slide-item"><div class="slide-item-button-container"><div type="button" filter="sweet" active="false" onclick="filter(this)" class="slide-item-button">Сладкие</div></div></div>
+                        <div class="slide-item"><div class="slide-item-button-container"><div type="button" filter="hit" active="false" onclick="filter(this)" class="slide-item-button">Хит</div></div></div>
+                        <div class="slide-item"><div class="slide-item-button-container"><div type="button" filter="hard" active="false" onclick="filter(this)" class="slide-item-button">Крепкие</div></div></div>
+                        
+                    </div>
+                </div>
+                <div class="header-gradient"></div>
+            </div>
+            <div class="content">
+                <div class="content-item blackberry sweet hit" onclick="openPopup('blackberry')">
+                    <div class="content-item-top">
+                        <div class="alcohol-wrapper">
+                            <div class="alcohol">
+                                <div class="alcohol-title">30%</div>
+                                <div class="alcohol-subtitle">Алкоголь</div>
+                            </div>
+                        </div>
+                        <div class="content-favorite-wrapper">
+                            <div class="content-favorite" active="false" onclick="addToFavorite(this)">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-item-bottom">
+                        <div class="content-item-bottom-textwrapper">
+                            <div class="content-item-bottom-textwrapper-title">
+                                Blackberry
+                            </div>
+                            <div class="content-item-bottom-textwrapper-subtitle">
+                                Fresh drink
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-item mohito sweet new" onclick="openPopup('blackberry_hard')">
+                    <div class="content-item-top">
+                        <div class="alcohol-wrapper">
+                            <div class="alcohol">
+                                <div class="alcohol-title">10%</div>
+                                <div class="alcohol-subtitle">Алкоголь</div>
+                            </div>
+                        </div>
+                        <div class="content-favorite-wrapper">
+                            <div class="content-favorite" active="false" onclick="addToFavorite(this)">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-item-bottom">
+                        <div class="content-item-bottom-textwrapper">
+                            <div class="content-item-bottom-textwrapper-title">
+                                Blackberry
+                            </div>
+                            <div class="content-item-bottom-textwrapper-subtitle">
+                                Fresh drink
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+                <div class="content-item mohito hard new hit" onclick="openPopup('mohito')">
+                    <div class="content-item-top">
+                        <div class="alcohol-wrapper">
+                            <div class="alcohol">
+                                <div class="alcohol-title">50%</div>
+                                <div class="alcohol-subtitle">Алкоголь</div>
+                            </div>
+                        </div>
+                        <div class="content-favorite-wrapper">
+                            <div class="content-favorite" active="false" onclick="addToFavorite(this)">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-item-bottom">
+                        <div class="content-item-bottom-textwrapper">
+                            <div class="content-item-bottom-textwrapper-title">
+                                Blackberry hard
+                            </div>
+                            <div class="content-item-bottom-textwrapper-subtitle">
+                                Fresh drink
+                            </div>
+                        </div>
+                    </div>
+				</div>
+                <div class="content-item mohito hard new hit" onclick="openPopup('mohito')">
+                    <div class="content-item-top">
+                        <div class="alcohol-wrapper">
+                            <div class="alcohol">
+                                <div class="alcohol-title">50%</div>
+                                <div class="alcohol-subtitle">Алкоголь</div>
+                            </div>
+                        </div>
+                        <div class="content-favorite-wrapper">
+                            <div class="content-favorite" active="false" onclick="addToFavorite(this)">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-item-bottom">
+                        <div class="content-item-bottom-textwrapper">
+                            <div class="content-item-bottom-textwrapper-title">
+                                Blackberry hard
+                            </div>
+                            <div class="content-item-bottom-textwrapper-subtitle">
+                                Fresh drink
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+			</div>
+            <div class="bottombar">
+                <div class="favorite-wrapper">
+                    <div class="favorite-button" active="false" onclick="favoriteClick(this)">
+                        <div><b>Избранное</b></div>
+                    </div>
+                </div>
+                <div class="search-button-wrapper">
+                    <div class="search-button" onclick="openSearchBar()">
+                        <img src="image/search.svg">
+                    </div>
+                </div>
+				<div class="search-textinput-wrapper">
+					<div class="search-textinput">
+						<div class="search-input"><!--<textarea placeholder="Поиск..." wrap="off"></textarea>--><input type="textarea" placeholder="Поиск...."></div>
+						<div class="search-cancel"><div class="search-cancelsearch" onclick="closeSearchBar()">X</div></div>
+					</div>
+					
+				</div>
+            </div>
+            <div class="popup-wrapper" onclick="preOpenPopup(this)">
+				<div class="popup-content"  onclick="popupTempChange()" id="blackberry">
+						<div class="popup-content-top">
+							<div class="popup-content-name">
+								<div class="popup-content-title">Blackberry</div>
+								<div class="popup-content-subtitle">Fresh drink</div>
+							</div>
+							<div class="popup-favourite">
+								<div class="content-favorite" active="false" onclick="addToFavorite(this)"></div>
+							</div>
+						</div>
+						<div class="popup-content-content">
+							<div class="popup-content-text">
+								<div>
+								<b>Ингредиенты</b><br>
+								Джин .................................................. 40 мл <br>
+								Шнапс яблоко .................................
+								10 мл <br>
+								Ликёр кассис
+								..................................  25 мл <br>
+								Сок лимона ..................................... 
+								25 мл <br>
+								Жасмин лемонграсс ......................15 мл <br>
+								Ежевика свежая ............................... 2 шт <br>
+								Белок ................................................. 20 мл<br>
+								</div>
+							</div>
+							
+						</div>
+                </div>
+				<div class="popup-content"  onclick="popupTempChange()" id="blackberry_hard">
+						<div class="popup-content-top">
+							<div class="popup-content-name">
+								<div class="popup-content-title">Blackberry hard</div>
+								<div class="popup-content-subtitle">Fresh drink</div>
+							</div>
+							<div class="popup-favourite">
+								<div class="content-favorite" active="false" onclick="addToFavorite(this)"></div>
+							</div>
+						</div>
+						<div class="popup-content-content">
+							<div class="popup-content-text">
+								<div>
+								<b>Ингредиенты</b><br>
+								Джин .................................................. 40 мл <br>
+								Шнапс яблоко .................................
+								10 мл <br>
+								Ликёр кассис
+								..................................  25 мл <br>
+								Сок лимона ..................................... 
+								25 мл <br>
+								Жасмин лемонграсс ......................15 мл <br>
+								Ежевика свежая ............................... 2 шт <br>
+								Белок ................................................. 20 мл<br>
+								</div>
+							</div>
+							
+						</div>
+                </div>
+				<div class="popup-content"  onclick="popupTempChange()" id="mohito">
+						<div class="popup-content-top">
+							<div class="popup-content-name">
+								<div class="popup-content-title">Blackberry</div>
+								<div class="popup-content-subtitle">Fresh drink</div>
+							</div>
+							<div class="popup-favourite">
+								<div class="content-favorite" active="false" onclick="addToFavorite(this)"></div>
+							</div>
+						</div>
+						<div class="popup-content-content">
+							<div class="popup-content-text">
+								<div>
+								<b>Ингредиенты</b><br>
+								Джин .................................................. 40 мл <br>
+								Шнапс яблоко .................................
+								10 мл <br>
+								Ликёр кассис
+								..................................  25 мл <br>
+								Сок лимона ..................................... 
+								25 мл <br>
+								Жасмин лемонграсс ......................15 мл <br>
+								Ежевика свежая ............................... 2 шт <br>
+								Белок ................................................. 20 мл<br>
+								</div>
+							</div>
+							
+						</div>
+                </div>
+                <div class="popup-content"  onclick="popupTempChange()" id="1">
+                    123
+                </div>
+                
+            </div>
+        </div>
+    </body>
+</html>
